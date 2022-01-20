@@ -11,7 +11,7 @@ import constants as const
 #  3  |   G  |   H  |  I   |
 #     |______|______|______|
 
-# Initialize Vibrators
+# Initialize Vibrators - https://gpiozero.readthedocs.io/en/stable/api_output.html#pwmoutputdevice
 active_high = True
 initialVal = 0.0
 freq = 100
