@@ -1,0 +1,28 @@
+#!/bin/bash
+# Place this file in the bin folder of the root directory
+
+# With this tool, typing pisync into the terminal will automatically
+# conect remotely with the provided address and sync all files in the 
+# current directory to the provided filepath.
+
+# MAKE SURE YOU ARE IN THE DIRECTORY YOU WISH TO SYNC BEFORE USING PIYNC 
+
+# Checks sets file based on path or file passed
+# Otherwise uses current working directory
+if [ $1 -z ]
+then
+    FILE=$(pwd)
+else
+    FILE=$1
+fi
+
+# Syncs the folder to the pi home directory.
+# Only updates changed files
+if [ -e $1 ]
+then
+    echo "Syncing $FILE to pi..."
+    # change to your address and desired filepath 
+    rsync -rP --update $FILE pi@raspberrypizero.local:/home/pi/
+else
+    echo 'File or path not found'
+fi
