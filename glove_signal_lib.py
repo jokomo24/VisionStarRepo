@@ -40,17 +40,17 @@ vibrator_I = gpiozero.PWMOutputDevice(const.GPIO_I, active_high, initialVal, fre
 fade_in_time = 0 
 fade_out_time = 0
 
-# background defines whether a vibration request should, True, run in parallel as in A & B & C 
-# or, False, run sequentially as in A then B then C
-background = False
+# background defines whether a vibration request should, True, run in parallel as in vibrator A & B & C 
+# or, False, run sequentially as in vibrator A then B then C
+#background = False
 
 class Row1:
     # Define vibration pattern/behavior with Class methods
-    def blink(on_time, off_time, n):
+    def blink(on_time, off_time, n, background):
         vibrator_A.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_C.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def pulse(on_time, off_time, n):
+    def pulse(on_time, off_time, n, background):
         vibrator_A.pulse(on_time, off_time, n, background)
         vibrator_B.pulse(on_time, off_time, n, background)
         vibrator_C.pulse(on_time, off_time, n, background)
@@ -64,11 +64,11 @@ class Row1:
         vibrator_C.off()
 
 class Row2:
-    def blink(on_time, off_time, n):
+    def blink(on_time, off_time, n, background):
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def pulse(on_time, off_time, n):
+    def pulse(on_time, off_time, n, background):
         vibrator_D.pulse(on_time, off_time, n, background)
         vibrator_E.pulse(on_time, off_time, n, background)
         vibrator_F.pulse(on_time, off_time, n, background)
@@ -82,11 +82,11 @@ class Row2:
         vibrator_F.off()
 
 class Row3:
-    def blink(on_time, off_time, n):
+    def blink(on_time, off_time, n, background):
         vibrator_G.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_I.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def pulse(on_time, off_time, n):
+    def pulse(on_time, off_time, n, background):
         vibrator_G.pulse(on_time, off_time, n, background)
         vibrator_H.pulse(on_time, off_time, n, background)
         vibrator_I.pulse(on_time, off_time, n, background)
@@ -100,11 +100,11 @@ class Row3:
         vibrator_I.off()
 
 class Column1:
-    def blink(on_time, off_time, n):
+    def blink(on_time, off_time, n, background):
         vibrator_A.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_G.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def pulse(on_time, off_time, n):
+    def pulse(on_time, off_time, n, background):
         vibrator_A.pulse(on_time, off_time, n, background)
         vibrator_D.pulse(on_time, off_time, n, background)
         vibrator_G.pulse(on_time, off_time, n, background)
@@ -118,11 +118,11 @@ class Column1:
         vibrator_G.off()
 
 class Column2:
-    def blink(on_time, off_time, n):
+    def blink(on_time, off_time, n, background):
         vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def pulse(on_time, off_time, n):
+    def pulse(on_time, off_time, n, background):
         vibrator_B.pulse(on_time, off_time, n, background)
         vibrator_E.pulse(on_time, off_time, n, background)
         vibrator_H.pulse(on_time, off_time, n, background)
@@ -136,11 +136,11 @@ class Column2:
         vibrator_H.off()
 
 class Column3:
-    def blink(on_time, off_time, n):
+    def blink(on_time, off_time, n, background):
         vibrator_C.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_I.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def pulse(on_time, off_time, n):
+    def pulse(on_time, off_time, n, background):
         vibrator_C.pulse(on_time, off_time, n, background)
         vibrator_F.pulse(on_time, off_time, n, background)
         vibrator_I.pulse(on_time, off_time, n, background)
