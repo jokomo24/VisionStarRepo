@@ -381,9 +381,9 @@ class Column3:
     def pulse(on_time, off_time):
         n = 1 # execute only once
         background = True # execute in parallel
-        vibrator_A.pulse(on_time, off_time, n, background)
-        vibrator_D.pulse(on_time, off_time, n, background)
-        vibrator_G.pulse(on_time, off_time, n, background)
+        vibrator_C.pulse(on_time, off_time, n, background)
+        vibrator_F.pulse(on_time, off_time, n, background)
+        vibrator_I.pulse(on_time, off_time, n, background)
     def pulse_upward(on_time, off_time):
         n = 1 # execute only once
         background = False # execute sequentially
@@ -424,7 +424,7 @@ class Column3:
 class arrow:
     # Define Arrow Pattern methods
     # Sequential
-    def outward_left(on_time, off_time, fade_in_time, fade_out_time):
+    def upward_left(on_time, off_time, fade_in_time, fade_out_time):
         n = 1 # execute only once
         background = False # execute arrow body sequentially
         vibrator_I.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
@@ -433,7 +433,7 @@ class arrow:
         background = True # execute arrow wings in parallel
         vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def outward_right(on_time, off_time, fade_in_time, fade_out_time):
+    def upward_right(on_time, off_time, fade_in_time, fade_out_time):
         n = 1 # execute only once
         background = False # execute arrow body sequentially
         vibrator_G.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
@@ -442,7 +442,7 @@ class arrow:
         background = True # execute arrow wings in parallel
         vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def inward_right(on_time, off_time, fade_in_time, fade_out_time):
+    def downward_right(on_time, off_time, fade_in_time, fade_out_time):
         n = 1 # execute only once
         background = False # execute arrow body sequentially
         vibrator_A.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
@@ -451,7 +451,7 @@ class arrow:
         background = True # execute arrow wings in parallel
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def inward_left(on_time, off_time, fade_in_time, fade_out_time):
+    def downward_left(on_time, off_time, fade_in_time, fade_out_time):
         n = 1 # execute only once
         background = False # execute arrow body sequentially
         vibrator_C.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
