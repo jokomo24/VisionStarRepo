@@ -138,13 +138,13 @@ while True:
 
 # Test Arrow Signal Methods
     # Sequential
-    gsl.arrow.outward_left(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time)
+    gsl.arrow.upward_left(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time)
     sleep(sleep_time)
-    gsl.arrow.inward_right(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time)
+    gsl.arrow.downward_right(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time)
     sleep(sleep_time)
-    gsl.arrow.outward_right(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time)
+    gsl.arrow.upward_right(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time)
     sleep(sleep_time)
-    gsl.arrow.inward_left(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time)
+    gsl.arrow.downward_left(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time)
     sleep(sleep_time)
     gsl.arrow.upward(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time)
     sleep(sleep_time)
