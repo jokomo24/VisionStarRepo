@@ -1,14 +1,14 @@
 import glove_signal_lib as gsl
 from time import sleep
 
-pulse_on_time = .5
-pulse_off_time = .5
+pulse_on_time = .05
+pulse_off_time = .05
 blink_on_time = .05
 blink_off_time = .05
 blink_fade_in_time = 0.0
 blink_fade_out_time = 0.0
 n = 1
-sleep_time = .5
+sleep_time = 1
 # background defines whether a vibration request should, True, run in parallel as in vibrator A & B & C 
 # or, False, run sequentially as in vibrator A then B then C
 background = True

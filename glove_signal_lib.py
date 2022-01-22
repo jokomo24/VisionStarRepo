@@ -47,7 +47,6 @@ vibrator_I = gpiozero.PWMOutputDevice(const.GPIO_I, active_high, initialVal, fre
 
 class Row1:
 # Define vibration pattern/behavior with Class methods
-    # TODO rename these methods based on the signal we decide they represent 
     def blink(on_time, off_time, fade_in_time, fade_out_time):
         n = 1 # execute only once
         background = True # execute in parallel
@@ -467,6 +466,7 @@ class arrow:
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         background = True # execute arrow wings in parallel
+        vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
     def downward(on_time, off_time, fade_in_time, fade_out_time):
@@ -478,6 +478,7 @@ class arrow:
         background = True # execute arrow wings in parallel
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
+        vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
     def leftward(on_time, off_time, fade_in_time, fade_out_time):
         n = 1 # execute only once
         background = False # execute arrow body sequentially
@@ -540,6 +541,7 @@ class arrow:
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         sleep(off_time)
+        vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
     def down(on_time, off_time, fade_in_time, fade_out_time):
@@ -551,6 +553,7 @@ class arrow:
         sleep(off_time)
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
+        vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
     def left(on_time, off_time, fade_in_time, fade_out_time):
         n = 1 # execute only once
         background = True # execute arrow body in parallel
