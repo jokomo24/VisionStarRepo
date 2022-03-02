@@ -15,7 +15,7 @@ import constants as const
 # Initialize Vibrators - https://gpiozero.readthedocs.io/en/stable/api_output.html#pwmoutputdevice
 active_high = True
 initialVal = 0.0
-freq = 100
+freq = 1000
 pin_factory = None
 
 vibrator_A = gpiozero.PWMOutputDevice(const.GPIO_A, active_high, initialVal, freq, pin_factory)
@@ -45,60 +45,78 @@ vibrator_I = gpiozero.PWMOutputDevice(const.GPIO_I, active_high, initialVal, fre
 # or, False, run sequentially as in vibrator A then B then C
 #background = False
 
-class Row1:
-# Define vibration pattern/behavior with Class methods
-    def blink(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+class Vibrator:
+    def A(on_time, off_time, fade_in_time, fade_out_time, n):
         background = True # execute in parallel
         vibrator_A.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-        vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-        vibrator_C.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def blink_rightward(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
-        background = False # execute sequentially
-        vibrator_A.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-        vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-        vibrator_C.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def blink_leftward(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
-        background = False # execute sequentially
-        vibrator_C.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-        vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-        vibrator_A.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    
-    def pulse(on_time, off_time):
-        n = 1 # execute only once
+    def B(on_time, off_time, fade_in_time, fade_out_time, n):
         background = True # execute in parallel
-        vibrator_A.pulse(on_time, off_time, n, background)
-        vibrator_B.pulse(on_time, off_time, n, background)
-        vibrator_C.pulse(on_time, off_time, n, background)
-    def pulse_rightward(on_time, off_time):
-        n = 1 # execute only once
-        background = False # execute sequentially
-        vibrator_A.pulse(on_time, off_time, n, background)
-        vibrator_B.pulse(on_time, off_time, n, background)
-        vibrator_C.pulse(on_time, off_time, n, background)
-    def pulse_leftward(on_time, off_time):
-        n = 1 # execute only once
-        background = False # execute sequentially
-        vibrator_C.pulse(on_time, off_time, n, background)
-        vibrator_B.pulse(on_time, off_time, n, background)
-        vibrator_A.pulse(on_time, off_time, n, background)
-    def pulse_inward(on_time, off_time):
-        n = 1 # execute only once
+        vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
+    def C(on_time, off_time, fade_in_time, fade_out_time, n):
         background = True # execute in parallel
-        vibrator_A.pulse(on_time, off_time, n, background)
-        vibrator_C.pulse(on_time, off_time, n, background)
-        sleep(off_time)
-        vibrator_B.pulse(on_time, off_time, n, background)
-    def pulse_outward(on_time, off_time):
-        n = 1 # execute only once
+        vibrator_C.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
+    def D(on_time, off_time, fade_in_time, fade_out_time, n):
         background = True # execute in parallel
-        vibrator_B.pulse(on_time, off_time, n, background)
-        sleep(off_time)
-        vibrator_A.pulse(on_time, off_time, n, background)
-        vibrator_C.pulse(on_time, off_time, n, background)
+        vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
+    def E(on_time, off_time, fade_in_time, fade_out_time, n):
+        background = True # execute in parallel
+        vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
+    def F(on_time, off_time, fade_in_time, fade_out_time, n):
+        background = True # execute in parallel
+        vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
+    def G(on_time, off_time, fade_in_time, fade_out_time, n):
+        background = True # execute in parallel
+        vibrator_G.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
+    def H(on_time, off_time, fade_in_time, fade_out_time, n):
+        background = True # execute in parallel
+        vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
+    def I(on_time, off_time, fade_in_time, fade_out_time, n):
+        background = True # execute in parallel
+        vibrator_I.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
 
+class Row1:
+    def blink(on_time, off_time, fade_in_time, fade_out_time, n):
+        background = True # execute in parallel
+        vibrator_A.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
+        vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
+        vibrator_C.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
+    def blink_rightward(on_time, off_time, fade_in_time, fade_out_time, n):
+        background = False # execute sequentially
+        vibrator_A.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
+        vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
+        vibrator_C.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
+    def blink_leftward(on_time, off_time, fade_in_time, fade_out_time, n):
+        background = False # execute sequentially
+        vibrator_C.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
+        vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
+        vibrator_A.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
+    def pulse(on_time, off_time, n):
+        background = True # execute in parallel
+        vibrator_A.pulse(on_time, off_time, n, background)
+        vibrator_B.pulse(on_time, off_time, n, background)
+        vibrator_C.pulse(on_time, off_time, n, background)
+    def pulse_rightward(on_time, off_time, n):
+        background = False # execute sequentially
+        vibrator_A.pulse(on_time, off_time, n, background)
+        vibrator_B.pulse(on_time, off_time, n, background)
+        vibrator_C.pulse(on_time, off_time, n, background)
+    def pulse_leftward(on_time, off_time, n):
+        background = False # execute sequentially
+        vibrator_C.pulse(on_time, off_time, n, background)
+        vibrator_B.pulse(on_time, off_time, n, background)
+        vibrator_A.pulse(on_time, off_time, n, background)
+    def pulse_inward(on_time, off_time, n):
+        background = True # execute in parallel
+        vibrator_A.pulse(on_time, off_time, n, background)
+        vibrator_C.pulse(on_time, off_time, n, background)
+        sleep(off_time)
+        vibrator_B.pulse(on_time, off_time, n, background)
+    def pulse_outward(on_time, off_time, n):
+        background = True # execute in parallel
+        vibrator_B.pulse(on_time, off_time, n, background)
+        sleep(off_time)
+        vibrator_A.pulse(on_time, off_time, n, background)
+        vibrator_C.pulse(on_time, off_time, n, background)
     # Constant On/Off methods
     def on():
         vibrator_A.on()
@@ -110,58 +128,48 @@ class Row1:
         vibrator_C.off()
 
 class Row2:
-    def blink(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def blink(on_time, off_time, fade_in_time, fade_out_time, n):
         background = True # execute in parallel
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def blink_rightward(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def blink_rightward(on_time, off_time, fade_in_time, fade_out_time, n):
         background = False # execute sequentially
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def blink_leftward(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def blink_leftward(on_time, off_time, fade_in_time, fade_out_time, n):
         background = False # execute sequentially
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    
-    def pulse(on_time, off_time):
-        n = 1 # execute only once
+    def pulse(on_time, off_time, n):
         background = True # execute in parallel
         vibrator_D.pulse(on_time, off_time, n, background)
         vibrator_E.pulse(on_time, off_time, n, background)
         vibrator_F.pulse(on_time, off_time, n, background)
-    def pulse_rightward(on_time, off_time):
-        n = 1 # execute only once
+    def pulse_rightward(on_time, off_time, n):
         background = False # execute sequentially
         vibrator_D.pulse(on_time, off_time, n, background)
         vibrator_E.pulse(on_time, off_time, n, background)
         vibrator_F.pulse(on_time, off_time, n, background)
-    def pulse_leftward(on_time, off_time):
-        n = 1 # execute only once
+    def pulse_leftward(on_time, off_time, n):
         background = False # execute sequentially
         vibrator_F.pulse(on_time, off_time, n, background)
         vibrator_E.pulse(on_time, off_time, n, background)
         vibrator_D.pulse(on_time, off_time, n, background)
-    def pulse_inward(on_time, off_time):
-        n = 1 # execute only once
+    def pulse_inward(on_time, off_time, n):
         background = True # execute in parallel
         vibrator_D.pulse(on_time, off_time, n, background)
         vibrator_F.pulse(on_time, off_time, n, background)
         sleep(off_time)
         vibrator_E.pulse(on_time, off_time, n, background)
-    def pulse_outward(on_time, off_time):
-        n = 1 # execute only once
+    def pulse_outward(on_time, off_time, n):
         background = True # execute in parallel
         vibrator_E.pulse(on_time, off_time, n, background)
         sleep(off_time)
         vibrator_D.pulse(on_time, off_time, n, background)
         vibrator_F.pulse(on_time, off_time, n, background)
-
     # Constant On/Off methods
     def on():
         vibrator_D.on()
@@ -173,57 +181,48 @@ class Row2:
         vibrator_F.off()
 
 class Row3:
-    def blink(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def blink(on_time, off_time, fade_in_time, fade_out_time, n):
         background = True # execute in parallel
         vibrator_G.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_I.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def blink_rightward(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def blink_rightward(on_time, off_time, fade_in_time, fade_out_time, n):
         background = False # execute sequentially
         vibrator_G.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_I.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def blink_leftward(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def blink_leftward(on_time, off_time, fade_in_time, fade_out_time, n):
         background = False # execute sequentially
         vibrator_I.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_G.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def pulse(on_time, off_time):
-        n = 1 # execute only once
+    def pulse(on_time, off_time, n):
         background = True # execute in parallel
         vibrator_G.pulse(on_time, off_time, n, background)
         vibrator_H.pulse(on_time, off_time, n, background)
         vibrator_I.pulse(on_time, off_time, n, background)
-    def pulse_rightward(on_time, off_time):
-        n = 1 # execute only once
+    def pulse_rightward(on_time, off_time, n):
         background = False # execute sequentially
         vibrator_G.pulse(on_time, off_time, n, background)
         vibrator_H.pulse(on_time, off_time, n, background)
         vibrator_I.pulse(on_time, off_time, n, background)
-    def pulse_leftward(on_time, off_time):
-        n = 1 # execute only once
+    def pulse_leftward(on_time, off_time, n):
         background = False # execute sequentially
         vibrator_I.pulse(on_time, off_time, n, background)
         vibrator_H.pulse(on_time, off_time, n, background)
         vibrator_G.pulse(on_time, off_time, n, background)
-    def pulse_inward(on_time, off_time):
-        n = 1 # execute only once
+    def pulse_inward(on_time, off_time, n):
         background = True # execute in parallel
         vibrator_G.pulse(on_time, off_time, n, background)
         vibrator_I.pulse(on_time, off_time, n, background)
         sleep(off_time)
         vibrator_H.pulse(on_time, off_time, n, background)
-    def pulse_outward(on_time, off_time):
-        n = 1 # execute only once
+    def pulse_outward(on_time, off_time, n):
         background = True # execute in parallel
         vibrator_H.pulse(on_time, off_time, n, background)
         sleep(off_time)
         vibrator_G.pulse(on_time, off_time, n, background)
         vibrator_I.pulse(on_time, off_time, n, background)
-
     # Constant On/Off methods
     def on():
         vibrator_G.on()
@@ -235,57 +234,48 @@ class Row3:
         vibrator_I.off()
 
 class Column1:
-    def blink(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def blink(on_time, off_time, fade_in_time, fade_out_time, n):
         background = True # execute in parallel
         vibrator_A.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_G.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def blink_upward(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def blink_upward(on_time, off_time, fade_in_time, fade_out_time, n):
         background = False # execute sequentially
         vibrator_G.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_A.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def blink_downward(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def blink_downward(on_time, off_time, fade_in_time, fade_out_time, n):
         background = False # execute sequentially
         vibrator_A.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_G.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def pulse(on_time, off_time):
-        n = 1 # execute only once
+    def pulse(on_time, off_time, n):
         background = True # execute in parallel
         vibrator_A.pulse(on_time, off_time, n, background)
         vibrator_D.pulse(on_time, off_time, n, background)
         vibrator_G.pulse(on_time, off_time, n, background)
-    def pulse_upward(on_time, off_time):
-        n = 1 # execute only once
+    def pulse_upward(on_time, off_time, n):
         background = False # execute sequentially
         vibrator_G.pulse(on_time, off_time, n, background)
         vibrator_D.pulse(on_time, off_time, n, background)
         vibrator_A.pulse(on_time, off_time, n, background)
-    def pulse_downward(on_time, off_time):
-        n = 1 # execute only once
+    def pulse_downward(on_time, off_time, n):
         background = False # execute sequentially
         vibrator_A.pulse(on_time, off_time, n, background)
         vibrator_D.pulse(on_time, off_time, n, background)
         vibrator_G.pulse(on_time, off_time, n, background)
-    def pulse_inward(on_time, off_time):
-        n = 1 # execute only once
+    def pulse_inward(on_time, off_time, n):
         background = True # execute in parallel
         vibrator_A.pulse(on_time, off_time, n, background)
         vibrator_G.pulse(on_time, off_time, n, background)
         sleep(off_time)
         vibrator_D.pulse(on_time, off_time, n, background)
-    def pulse_outward(on_time, off_time):
-        n = 1 # execute only once
+    def pulse_outward(on_time, off_time, n):
         background = True # execute in parallel
         vibrator_D.pulse(on_time, off_time, n, background)
         sleep(off_time)
         vibrator_A.pulse(on_time, off_time, n, background)
         vibrator_G.pulse(on_time, off_time, n, background)
-
     # Constant On/Off methods
     def on():
         vibrator_A.on()
@@ -297,57 +287,48 @@ class Column1:
         vibrator_G.off()
 
 class Column2:
-    def blink(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def blink(on_time, off_time, fade_in_time, fade_out_time, n):
         background = True # execute in parallel
         vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def blink_upward(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def blink_upward(on_time, off_time, fade_in_time, fade_out_time, n):
         background = False # execute sequentially
         vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def blink_downward(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def blink_downward(on_time, off_time, fade_in_time, fade_out_time, n):
         background = False # execute sequentially
         vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def pulse(on_time, off_time):
-        n = 1 # execute only once
+    def pulse(on_time, off_time, n):
         background = True # execute in parallel
         vibrator_B.pulse(on_time, off_time, n, background)
         vibrator_E.pulse(on_time, off_time, n, background)
         vibrator_H.pulse(on_time, off_time, n, background)
-    def pulse_upward(on_time, off_time):
-        n = 1 # execute only once
+    def pulse_upward(on_time, off_time, n):
         background = False # execute sequentially
         vibrator_H.pulse(on_time, off_time, n, background)
         vibrator_E.pulse(on_time, off_time, n, background)
         vibrator_B.pulse(on_time, off_time, n, background)
-    def pulse_downward(on_time, off_time):
-        n = 1 # execute only once
+    def pulse_downward(on_time, off_time, n):
         background = False # execute sequentially
         vibrator_B.pulse(on_time, off_time, n, background)
         vibrator_E.pulse(on_time, off_time, n, background)
         vibrator_H.pulse(on_time, off_time, n, background)
-    def pulse_inward(on_time, off_time):
-        n = 1 # execute only once
+    def pulse_inward(on_time, off_time, n):
         background = True # execute in parallel
         vibrator_B.pulse(on_time, off_time, n, background)
         vibrator_H.pulse(on_time, off_time, n, background)
         sleep(off_time)
         vibrator_E.pulse(on_time, off_time, n, background)
-    def pulse_outward(on_time, off_time):
-        n = 1 # execute only once
+    def pulse_outward(on_time, off_time, n):
         background = True # execute in parallel
         vibrator_E.pulse(on_time, off_time, n, background)
         sleep(off_time)
         vibrator_B.pulse(on_time, off_time, n, background)
         vibrator_H.pulse(on_time, off_time, n, background)
-
     # Constant On/Off methods
     def on():
         vibrator_B.on()
@@ -359,57 +340,48 @@ class Column2:
         vibrator_H.off()
 
 class Column3:
-    def blink(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def blink(on_time, off_time, fade_in_time, fade_out_time, n):
         background = True # execute in parallel
         vibrator_C.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_I.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def blink_upward(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def blink_upward(on_time, off_time, fade_in_time, fade_out_time, n):
         background = False # execute sequentially
         vibrator_I.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_C.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def blink_downward(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def blink_downward(on_time, off_time, fade_in_time, fade_out_time, n):
         background = False # execute sequentially
         vibrator_C.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_I.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def pulse(on_time, off_time):
-        n = 1 # execute only once
+    def pulse(on_time, off_time, n):
         background = True # execute in parallel
         vibrator_C.pulse(on_time, off_time, n, background)
         vibrator_F.pulse(on_time, off_time, n, background)
         vibrator_I.pulse(on_time, off_time, n, background)
-    def pulse_upward(on_time, off_time):
-        n = 1 # execute only once
+    def pulse_upward(on_time, off_time, n):
         background = False # execute sequentially
         vibrator_I.pulse(on_time, off_time, n, background)
         vibrator_F.pulse(on_time, off_time, n, background)
         vibrator_C.pulse(on_time, off_time, n, background)
-    def pulse_downward(on_time, off_time):
-        n = 1 # execute only once
+    def pulse_downward(on_time, off_time, n):
         background = False # execute sequentially
         vibrator_C.pulse(on_time, off_time, n, background)
         vibrator_F.pulse(on_time, off_time, n, background)
         vibrator_I.pulse(on_time, off_time, n, background)
-    def pulse_inward(on_time, off_time):
-        n = 1 # execute only once
+    def pulse_inward(on_time, off_time, n):
         background = True # execute in parallel
         vibrator_C.pulse(on_time, off_time, n, background)
         vibrator_I.pulse(on_time, off_time, n, background)
         sleep(off_time)
         vibrator_F.pulse(on_time, off_time, n, background)
-    def pulse_outward(on_time, off_time):
-        n = 1 # execute only once
+    def pulse_outward(on_time, off_time, n):
         background = True # execute in parallel
         vibrator_F.pulse(on_time, off_time, n, background)
         sleep(off_time)
         vibrator_C.pulse(on_time, off_time, n, background)
         vibrator_I.pulse(on_time, off_time, n, background)
-
     # Constant On/Off methods
     def on():
         vibrator_C.on()
@@ -420,11 +392,10 @@ class Column3:
         vibrator_F.off()
         vibrator_I.off()
 
-class arrow:
+class Arrow:
     # Define Arrow Pattern methods
     # Sequential
-    def upward_left(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def upward_left(on_time, off_time, fade_in_time, fade_out_time, n):
         background = False # execute arrow body sequentially
         vibrator_I.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
@@ -432,8 +403,7 @@ class arrow:
         background = True # execute arrow wings in parallel
         vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def upward_right(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def upward_right(on_time, off_time, fade_in_time, fade_out_time, n):
         background = False # execute arrow body sequentially
         vibrator_G.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
@@ -441,8 +411,7 @@ class arrow:
         background = True # execute arrow wings in parallel
         vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def downward_right(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def downward_right(on_time, off_time, fade_in_time, fade_out_time, n):
         background = False # execute arrow body sequentially
         vibrator_A.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
@@ -450,8 +419,7 @@ class arrow:
         background = True # execute arrow wings in parallel
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def downward_left(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def downward_left(on_time, off_time, fade_in_time, fade_out_time, n):
         background = False # execute arrow body sequentially
         vibrator_C.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
@@ -459,8 +427,7 @@ class arrow:
         background = True # execute arrow wings in parallel
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def upward(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def upward(on_time, off_time, fade_in_time, fade_out_time, n):
         background = False # execute arrow body sequentially
         vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
@@ -469,8 +436,7 @@ class arrow:
         vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def downward(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def downward(on_time, off_time, fade_in_time, fade_out_time, n):
         background = False # execute arrow body sequentially
         vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
@@ -479,8 +445,7 @@ class arrow:
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def leftward(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def leftward(on_time, off_time, fade_in_time, fade_out_time, n):
         background = False # execute arrow body sequentially
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
@@ -488,8 +453,7 @@ class arrow:
         background = True # execute arrow wings in parallel
         vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def rightward(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def rightward(on_time, off_time, fade_in_time, fade_out_time, n):
         background = False # execute arrow body sequentially
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
@@ -498,8 +462,7 @@ class arrow:
         vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
     # Parallel
-    def out_left(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def out_left(on_time, off_time, fade_in_time, fade_out_time, n):
         background = True # execute arrow body in parallel
         vibrator_I.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
@@ -507,8 +470,7 @@ class arrow:
         sleep(off_time)
         vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def out_right(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def out_right(on_time, off_time, fade_in_time, fade_out_time, n):
         background = True # execute arrow body in parallel
         vibrator_G.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
@@ -516,8 +478,7 @@ class arrow:
         sleep(off_time)
         vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def in_right(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def in_right(on_time, off_time, fade_in_time, fade_out_time, n):
         background = True # execute arrow body in parallel
         vibrator_A.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
@@ -525,8 +486,7 @@ class arrow:
         sleep(off_time)
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def in_left(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def in_left(on_time, off_time, fade_in_time, fade_out_time, n):
         background = True # execute arrow body in parallel
         vibrator_C.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
@@ -534,8 +494,7 @@ class arrow:
         sleep(off_time)
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def up(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def up(on_time, off_time, fade_in_time, fade_out_time, n):
         background = True # execute arrow body in parallel
         vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
@@ -544,8 +503,7 @@ class arrow:
         vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def down(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def down(on_time, off_time, fade_in_time, fade_out_time, n):
         background = True # execute arrow body in parallel
         vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
@@ -554,8 +512,7 @@ class arrow:
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def left(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def left(on_time, off_time, fade_in_time, fade_out_time, n):
         background = True # execute arrow body in parallel
         vibrator_F.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
@@ -563,8 +520,7 @@ class arrow:
         sleep(off_time)
         vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
-    def right(on_time, off_time, fade_in_time, fade_out_time):
-        n = 1 # execute only once
+    def right(on_time, off_time, fade_in_time, fade_out_time, n):
         background = True # execute arrow body in parallel
         vibrator_D.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_E.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
@@ -572,3 +528,692 @@ class arrow:
         sleep(off_time)
         vibrator_B.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
         vibrator_H.blink(on_time, off_time, fade_in_time, fade_out_time, n, background)
+
+class Triangle:
+    def up(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def down(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def left(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def right(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def upperleft(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_A.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def upperright(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_C.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def lower_left(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_G.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def lowerright(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_I.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    # Sequential Functions
+    def upward(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        sleep(blink_on_time)
+        vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def downward(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        sleep(blink_on_time)
+        vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def leftward(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        sleep(blink_on_time)
+        vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def rightward(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        sleep(blink_on_time)
+        vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def upperleftward(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        sleep(blink_on_time)
+        vibrator_A.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def upperrightward(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        sleep(blink_on_time)
+        vibrator_C.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def lower_leftward(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        sleep(blink_on_time)
+        vibrator_G.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def lowerrightward(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        sleep(blink_on_time)
+        vibrator_I.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+
+class Diagnal:
+    def AEI(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_A.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_E.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_I.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def CEG(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_C.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_E.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_G.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def BF(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def DH(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def BD(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def FH(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def X(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_A.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_E.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_I.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_C.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_G.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+
+class Box:
+    def full(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_A.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_C.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_E.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_G.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_I.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def foursides(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_A.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_C.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_G.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_I.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def fourcorners(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_A.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_C.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_G.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_I.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def upperleft(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_A.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_E.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def upperright(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_C.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_E.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def lower_left(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_E.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_G.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def lowerright(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_E.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_I.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def leftrect(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_A.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_E.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_G.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def rightrect(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_C.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_E.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_I.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def upperrect(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_A.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_E.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_C.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def lowerrect(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_E.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_G.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_I.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def diamond(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_E.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+    def diamondhollow(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+        background = True
+        vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+        vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
+
+# Here we will describe signals using the previously defined ones
+# based on a level of urgency defined below.
+# 
+
+# Here we establish three priority levels for the glove signals:
+#   1. ALERT       - Three short blinks
+#   2. ATTENTION   - Two short blinks
+#   3. AKNOWLEDGE  - One short blink
+
+class Alert:
+    def Vibrator(which):
+        if (which == "A"):
+            Vibrator.A()
+            sleep(const.SLEEP_TIME)
+            Vibrator.A()
+            sleep(const.SLEEP_TIME)
+            Vibrator.A()
+        elif (which == "B"):
+            Vibrator.B()
+            sleep(const.SLEEP_TIME)
+            Vibrator.B()
+            sleep(const.SLEEP_TIME)
+            Vibrator.B()
+        elif (which == "C"):
+            Vibrator.C()
+            sleep(const.SLEEP_TIME)
+            Vibrator.C()
+            sleep(const.SLEEP_TIME)
+            Vibrator.C()
+        elif (which == "D"):
+            Vibrator.D()
+            sleep(const.SLEEP_TIME)
+            Vibrator.D()
+            sleep(const.SLEEP_TIME)
+            Vibrator.D()
+        elif (which == "E"):
+            Vibrator.E()
+            sleep(const.SLEEP_TIME)
+            Vibrator.E()
+            sleep(const.SLEEP_TIME)
+            Vibrator.E()
+        elif (which == "F"):
+            Vibrator.F()
+            sleep(const.SLEEP_TIME)
+            Vibrator.F()
+            sleep(const.SLEEP_TIME)
+            Vibrator.F()
+        elif (which == "G"):
+            Vibrator.G()
+            sleep(const.SLEEP_TIME)
+            Vibrator.G()
+            sleep(const.SLEEP_TIME)
+            Vibrator.G()
+        elif (which == "H"):
+            Vibrator.H()
+            sleep(const.SLEEP_TIME)
+            Vibrator.H()
+            sleep(const.SLEEP_TIME)
+            Vibrator.H()
+        elif (which == "I"):
+            Vibrator.I()
+            sleep(const.SLEEP_TIME)
+            Vibrator.I()
+            sleep(const.SLEEP_TIME)
+            Vibrator.I()    
+    def Row(rowNum):
+        if (rowNum == 1):
+            Row1.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Row1.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Row1.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (rowNum == 2):
+            Row2.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Row2.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Row2.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (rowNum == 3):
+            Row3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Row3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Row3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Column(colNum):
+        if (colNum == 1):
+            Column1.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Column1.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Column1.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (colNum == 2):
+            Column2.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Column2.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Column2.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (colNum == 3):
+            Column3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Column3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Column3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Triangle(location):
+        if (location == "up"):
+            Triangle.up(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.up(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.up(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (location == "down"):
+            Triangle.down(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.down(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.down(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (location == "left"):
+            Triangle.left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (location == "right"):
+            Triangle.right(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.right(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.right(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (location == "upperleft"):
+            Triangle.upperleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.upperleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.upperleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (location == "upperright"):
+            Triangle.upperright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.upperright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.upperright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (location == "lowerright"):
+            Triangle.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (location == "lower_left"):
+            Triangle.lower_left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.lower_left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.lower_left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Box(type):
+        if (type == "full"):
+            Box.full(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.full(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.full(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "foursides"):
+            Box.foursides(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.foursides(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.foursides(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "fourcorners"):
+            Box.fourcorners(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.fourcorners(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.fourcorners(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "upperleft"):
+            Box.upperleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.upperleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.upperleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "upperright"):
+            Box.upperright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.upperright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.upperright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "lowerright"):
+            Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "lowerright"):
+            Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "leftrect"):
+            Box.leftrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.leftrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.leftrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "rightrect"):
+            Box.rightrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.rightrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.rightrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "upperrect"):
+            Box.upperrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.upperrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.upperrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "lowerrect"):
+            Box.lowerrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.lowerrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.lowerrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "diamond"):
+            Box.diamond(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.diamond(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.diamond(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "diamondhollow"):
+            Box.diamondhollow(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.diamondhollow(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.diamondhollow(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+
+class Attention:
+    def Vibrator(which):
+        if (which == "A"):
+            Vibrator.A()
+            sleep(const.SLEEP_TIME)
+            Vibrator.A()
+        elif (which == "B"):
+            Vibrator.B()
+            sleep(const.SLEEP_TIME)
+            Vibrator.B()
+        elif (which == "C"):
+            Vibrator.C()
+            sleep(const.SLEEP_TIME)
+            Vibrator.C()
+        elif (which == "D"):
+            Vibrator.D()
+            sleep(const.SLEEP_TIME)
+            Vibrator.D()
+        elif (which == "E"):
+            Vibrator.E()
+            sleep(const.SLEEP_TIME)
+            Vibrator.E()
+        elif (which == "F"):
+            Vibrator.F()
+            sleep(const.SLEEP_TIME)
+            Vibrator.F()
+        elif (which == "G"):
+            Vibrator.G()
+            sleep(const.SLEEP_TIME)
+            Vibrator.G()
+        elif (which == "H"):
+            Vibrator.H()
+            sleep(const.SLEEP_TIME)
+            Vibrator.H()
+        elif (which == "I"):
+            Vibrator.I()
+            sleep(const.SLEEP_TIME)
+            Vibrator.I()
+    def Row(rowNum):
+        if (rowNum == 1):
+            Row1.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Row1.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (rowNum == 2):
+            Row2.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Row2.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (rowNum == 3):
+            Row3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Row3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Column(colNum):
+        if (colNum == 1):
+            Column1.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Column1.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (colNum == 2):
+            Column2.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Column2.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (colNum == 3):
+            Column3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Column3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Triangle(location):
+        if (location == "up"):
+            Triangle.up(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.up(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (location == "down"):
+            Triangle.down(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.down(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (location == "left"):
+            Triangle.left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (location == "right"):
+            Triangle.right(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.right(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (location == "upperleft"):
+            Triangle.upperleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.upperleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (location == "upperright"):
+            Triangle.upperright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.upperright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (location == "lowerright"):
+            Triangle.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (location == "lower_left"):
+            Triangle.lower_left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Triangle.lower_left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Box(type):
+        if (type == "full"):
+            Box.full(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.full(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "foursides"):
+            Box.foursides(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.foursides(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "fourcorners"):
+            Box.fourcorners(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.fourcorners(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "upperleft"):
+            Box.upperleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.upperleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "upperright"):
+            Box.upperright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.upperright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "lowerright"):
+            Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "lowerright"):
+            Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "leftrect"):
+            Box.leftrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.leftrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "rightrect"):
+            Box.rightrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.rightrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "upperrect"):
+            Box.upperrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.upperrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "lowerrect"):
+            Box.lowerrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.lowerrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "diamond"):
+            Box.diamond(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.diamond(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "diamondhollow"):
+            Box.diamondhollow(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            sleep(const.SLEEP_TIME)
+            Box.diamondhollow(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+
+class Acknowledge:
+    def Vibrator(which):
+        if (which == "A"):
+            Vibrator.A()
+        elif (which == "B"):
+            Vibrator.B()
+        elif (which == "C"):
+            Vibrator.C()
+        elif (which == "D"):
+            Vibrator.D()
+        elif (which == "E"):
+            Vibrator.E()
+        elif (which == "F"):
+            Vibrator.F()
+        elif (which == "G"):
+            Vibrator.G()
+        elif (which == "H"):
+            Vibrator.H()
+        elif (which == "I"):
+            Vibrator.I()
+    def Row(rowNum):
+        if (rowNum == 1):
+            Row1.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (rowNum == 2):
+            Row2.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (rowNum == 3):
+            Row3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Column(colNum):
+        if (colNum == 1):
+            Column1.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (colNum == 2):
+            Column2.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (colNum == 3):
+            Column3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Triangle(location):
+        if (location == "up"):
+            Triangle.up(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (location == "down"):
+            Triangle.down(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (location == "left"):
+            Triangle.left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (location == "right"):
+            Triangle.right(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (location == "upperleft"):
+            Triangle.upperleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (location == "upperright"):
+            Triangle.upperright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (location == "lowerright"):
+            Triangle.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (location == "lower_left"):
+            Triangle.lower_left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Box(type):
+        if (type == "full"):
+            Box.full(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "foursides"):
+            Box.foursides(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "fourcorners"):
+            Box.fourcorners(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "upperleft"):
+            Box.upperleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "upperright"):
+            Box.upperright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "lowerright"):
+            Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "lowerright"):
+            Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "leftrect"):
+            Box.leftrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "rightrect"):
+            Box.rightrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "upperrect"):
+            Box.upperrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "lowerrect"):
+            Box.lowerrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "diamond"):
+            Box.diamond(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "diamondhollow"):
+            Box.diamondhollow(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+
+# Here we will define a small set of Braile Contractions
+
