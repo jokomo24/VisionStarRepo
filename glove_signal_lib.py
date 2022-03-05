@@ -15,7 +15,7 @@ import constants as const
 # Initialize Vibrators - https://gpiozero.readthedocs.io/en/stable/api_output.html#pwmoutputdevice
 active_high = True
 initialVal = 0.0
-freq = 1000
+freq = 100
 pin_factory = None
 
 vibrator_A = gpiozero.PWMOutputDevice(const.GPIO_A, active_high, initialVal, freq, pin_factory)
@@ -560,7 +560,7 @@ class Triangle:
         vibrator_B.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
         vibrator_C.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
         vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
-    def lower_left(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+    def lowerleft(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
         background = True
         vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
         vibrator_G.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
@@ -607,7 +607,7 @@ class Triangle:
         vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
         sleep(blink_on_time)
         vibrator_C.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
-    def lower_leftward(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+    def lowerleftward(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
         background = True
         vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
         vibrator_H.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
@@ -695,7 +695,7 @@ class Box:
         vibrator_C.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
         vibrator_E.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
         vibrator_F.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
-    def lower_left(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
+    def lowerleft(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n):
         background = True
         vibrator_D.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
         vibrator_E.blink(blink_on_time, blink_off_time, blink_fade_in_time, blink_fade_out_time, n, background)
@@ -765,59 +765,59 @@ class Box:
 class Alert:
     def Vibrator(which):
         if (which == "A"):
-            Vibrator.A()
+            Vibrator.A(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.A()
+            Vibrator.A(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.A()
+            Vibrator.A(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "B"):
-            Vibrator.B()
+            Vibrator.B(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.B()
+            Vibrator.B(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.B()
+            Vibrator.B(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "C"):
-            Vibrator.C()
+            Vibrator.C(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.C()
+            Vibrator.C(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.C()
+            Vibrator.C(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "D"):
-            Vibrator.D()
+            Vibrator.D(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.D()
+            Vibrator.D(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.D()
+            Vibrator.D(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "E"):
-            Vibrator.E()
+            Vibrator.E(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.E()
+            Vibrator.E(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.E()
+            Vibrator.E(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "F"):
-            Vibrator.F()
+            Vibrator.F(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.F()
+            Vibrator.F(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.F()
+            Vibrator.F(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "G"):
-            Vibrator.G()
+            Vibrator.G(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.G()
+            Vibrator.G(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.G()
+            Vibrator.G(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "H"):
-            Vibrator.H()
+            Vibrator.H(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.H()
+            Vibrator.H(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.H()
+            Vibrator.H(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "I"):
-            Vibrator.I()
+            Vibrator.I(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.I()
+            Vibrator.I(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.I()    
+            Vibrator.I(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS) 
     def Row(rowNum):
         if (rowNum == 1):
             Row1.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -856,55 +856,55 @@ class Alert:
             Column3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
             Column3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-    def Triangle(location):
-        if (location == "up"):
-            Triangle.up(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Triangle(direction):
+        if (direction == "upward"):
+            Triangle.upward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.up(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.upward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.up(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (location == "down"):
-            Triangle.down(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.upward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (direction == "downward"):
+            Triangle.downward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.down(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.downward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.down(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (location == "left"):
-            Triangle.left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.downward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (direction == "leftward"):
+            Triangle.leftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.leftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (location == "right"):
-            Triangle.right(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.leftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (direction == "rightward"):
+            Triangle.rightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.right(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.rightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.right(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (location == "upperleft"):
-            Triangle.upperleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.rightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (direction == "upperleftward"):
+            Triangle.upperleftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.upperleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.upperleftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.upperleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (location == "upperright"):
-            Triangle.upperright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.upperleftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (direction == "upperrightward"):
+            Triangle.upperrightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.upperright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.upperrightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.upperright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (location == "lowerright"):
-            Triangle.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.upperrightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (direction == "lowerrightward"):
+            Triangle.lowerrightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.lowerrightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (location == "lower_left"):
-            Triangle.lower_left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.lowerrightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (direction == "lowerleftward"):
+            Triangle.lowerleftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.lower_left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.lowerleftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.lower_left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.lowerleftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
     def Box(type):
         if (type == "full"):
             Box.full(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -942,12 +942,12 @@ class Alert:
             Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
             Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (type == "lowerright"):
-            Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "lowerleft"):
+            Box.lowerleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Box.lowerleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Box.lowerleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (type == "leftrect"):
             Box.leftrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
@@ -984,45 +984,73 @@ class Alert:
             Box.diamondhollow(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
             Box.diamondhollow(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Above():
+        Row1.blink_rightward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Row1.blink_leftward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Row1.blink_rightward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Row1.blink_leftward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Row1.blink_rightward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Row1.blink_leftward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Below():
+        Row3.blink_rightward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Row3.blink_leftward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Row3.blink_rightward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Row3.blink_leftward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Row3.blink_rightward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Row3.blink_leftward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Left():
+        Column1.blink_downward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Column1.blink_upward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Column1.blink_downward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Column1.blink_upward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Column1.blink_downward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Column1.blink_upward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Right():
+        Column3.blink_downward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Column3.blink_upward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Column3.blink_downward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Column3.blink_upward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Column3.blink_downward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Column3.blink_upward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
 
 class Attention:
     def Vibrator(which):
         if (which == "A"):
-            Vibrator.A()
+            Vibrator.A(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.A()
+            Vibrator.A(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "B"):
-            Vibrator.B()
+            Vibrator.B(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.B()
+            Vibrator.B(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "C"):
-            Vibrator.C()
+            Vibrator.C(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.C()
+            Vibrator.C(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "D"):
-            Vibrator.D()
+            Vibrator.D(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.D()
+            Vibrator.D(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "E"):
-            Vibrator.E()
+            Vibrator.E(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.E()
+            Vibrator.E(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "F"):
-            Vibrator.F()
+            Vibrator.F(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.F()
+            Vibrator.F(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "G"):
-            Vibrator.G()
+            Vibrator.G(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.G()
+            Vibrator.G(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "H"):
-            Vibrator.H()
+            Vibrator.H(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.H()
+            Vibrator.H(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "I"):
-            Vibrator.I()
+            Vibrator.I(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Vibrator.I()
+            Vibrator.I(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
     def Row(rowNum):
         if (rowNum == 1):
             Row1.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -1049,39 +1077,39 @@ class Attention:
             Column3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
             Column3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-    def Triangle(location):
-        if (location == "up"):
-            Triangle.up(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Triangle(direction):
+        if (direction == "upward"):
+            Triangle.upward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.up(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (location == "down"):
-            Triangle.down(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.upward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (direction == "downward"):
+            Triangle.downward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.down(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (location == "left"):
-            Triangle.left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.downward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (direction == "leftward"):
+            Triangle.leftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (location == "right"):
-            Triangle.right(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.leftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (direction == "rightward"):
+            Triangle.rightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.right(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (location == "upperleft"):
-            Triangle.upperleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.rightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (direction == "upperleftward"):
+            Triangle.upperleftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.upperleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (location == "upperright"):
-            Triangle.upperright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.upperleftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (direction == "upperrightward"):
+            Triangle.upperrightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.upperright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (location == "lowerright"):
-            Triangle.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.upperrightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (direction == "lowerrightward"):
+            Triangle.lowerrightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (location == "lower_left"):
-            Triangle.lower_left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.lowerrightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (direction == "lowerleftward"):
+            Triangle.lowerleftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Triangle.lower_left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Triangle.lowerleftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
     def Box(type):
         if (type == "full"):
             Box.full(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -1107,10 +1135,10 @@ class Attention:
             Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
             Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (type == "lowerright"):
-            Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "lowerleft"):
+            Box.lowerleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
-            Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+            Box.lowerleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (type == "leftrect"):
             Box.leftrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
@@ -1135,27 +1163,47 @@ class Attention:
             Box.diamondhollow(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
             Box.diamondhollow(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Above():
+        Row1.blink_rightward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Row1.blink_leftward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Row1.blink_rightward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Row1.blink_leftward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Below():
+        Row3.blink_rightward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Row3.blink_leftward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Row3.blink_rightward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Row3.blink_leftward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Left():
+        Column1.blink_downward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Column1.blink_upward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Column1.blink_downward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Column1.blink_upward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Right():
+        Column3.blink_downward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Column3.blink_upward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Column3.blink_downward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Column3.blink_upward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
 
 class Acknowledge:
     def Vibrator(which):
         if (which == "A"):
-            Vibrator.A()
+            Vibrator.A(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "B"):
-            Vibrator.B()
+            Vibrator.B(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "C"):
-            Vibrator.C()
+            Vibrator.C(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "D"):
-            Vibrator.D()
+            Vibrator.D(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "E"):
-            Vibrator.E()
+            Vibrator.E(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "F"):
-            Vibrator.F()
+            Vibrator.F(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "G"):
-            Vibrator.G()
+            Vibrator.G(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "H"):
-            Vibrator.H()
+            Vibrator.H(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "I"):
-            Vibrator.I()
+            Vibrator.I(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
     def Row(rowNum):
         if (rowNum == 1):
             Row1.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -1170,23 +1218,23 @@ class Acknowledge:
             Column2.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (colNum == 3):
             Column3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-    def Triangle(location):
-        if (location == "up"):
-            Triangle.up(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (location == "down"):
-            Triangle.down(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (location == "left"):
-            Triangle.left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (location == "right"):
-            Triangle.right(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (location == "upperleft"):
-            Triangle.upperleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (location == "upperright"):
-            Triangle.upperright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (location == "lowerright"):
-            Triangle.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (location == "lower_left"):
-            Triangle.lower_left(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Triangle(direction):
+        if (direction == "upward"):
+            Triangle.upward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (direction == "downward"):
+            Triangle.downward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (direction == "leftward"):
+            Triangle.leftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (direction == "rightward"):
+            Triangle.rightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (direction == "upperleftward"):
+            Triangle.upperleftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (direction == "upperrightward"):
+            Triangle.upperrightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (direction == "lowerrightward"):
+            Triangle.lowerrightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (direction == "lowerleftward"):
+            Triangle.lowerleftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
     def Box(type):
         if (type == "full"):
             Box.full(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -1200,8 +1248,8 @@ class Acknowledge:
             Box.upperright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (type == "lowerright"):
             Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-        elif (type == "lowerright"):
-            Box.lowerright(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        elif (type == "lowerleft"):
+            Box.lowerleft(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (type == "leftrect"):
             Box.leftrect(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (type == "rightrect"):
@@ -1214,6 +1262,15 @@ class Acknowledge:
             Box.diamond(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (type == "diamondhollow"):
             Box.diamondhollow(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
-
-# Here we will define a small set of Braile Contractions
-
+    def Above():
+        Row1.blink_rightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Row1.blink_leftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Below():
+        Row3.blink_rightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Row3.blink_leftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Left():
+        Column1.blink_downward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Column1.blink_upward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    def Right():
+        Column3.blink_downward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+        Column3.blink_upward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
