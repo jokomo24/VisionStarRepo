@@ -2,6 +2,7 @@ from time import sleep
 import gpiozero
 import constants as const
 import threading 
+from concurrent.futures import ThreadPoolExecutor
 
 # Grid Layout Naming Convention
 #         1      2     3
@@ -49,9 +50,13 @@ vibrator_I = gpiozero.PWMOutputDevice(const.GPIO_I, active_high, initialVal, fre
 # Create a thread wrapper to run process in background
 # !!! The issue with doing this is that messages could overlap
 # Ideally we'd want to create a prority queue
+
+tp = ThreadPoolExecutor(10)  # max 10 thread
+
 def threaded(fn):
     def wrapper(*args, **kwargs):
-        threading.Thread(target=fn, args=args, kwargs=kwargs).start()
+        return tp.submit(fn, *args, **kwargs)  # returns Future object
+        #threading.Thread(target=fn, args=args, kwargs=kwargs).start()
     return wrapper
 
 class Vibrator:
