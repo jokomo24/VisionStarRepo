@@ -218,7 +218,7 @@ while True:
 # Test Box Signal Methods
 
 # Test Urgency Signal Methods
-    # Test Acknowledge
+#    Test Acknowledge
     # gsl.Acknowledge.Vibrator("A")
     # sleep(sleep_time)
     # gsl.Acknowledge.Vibrator("B")
