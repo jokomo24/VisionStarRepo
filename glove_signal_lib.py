@@ -1,6 +1,7 @@
 from time import sleep
 import gpiozero
 import constants as const
+import threading 
 
 # Grid Layout Naming Convention
 #         1      2     3
@@ -44,6 +45,14 @@ vibrator_I = gpiozero.PWMOutputDevice(const.GPIO_I, active_high, initialVal, fre
 # background defines whether a vibration request should, True, run in parallel as in vibrator A & B & C 
 # or, False, run sequentially as in vibrator A then B then C
 #background = False
+
+# Create a thread wrapper to run process in background
+# !!! The issue with doing this is that messages could overlap
+# Ideally we'd want to create a prority queue
+def threaded(fn):
+    def wrapper(*args, **kwargs):
+        threading.Thread(target=fn, args=args, kwargs=kwargs).start()
+    return wrapper
 
 class Vibrator:
     def A(on_time, off_time, fade_in_time, fade_out_time, n):
@@ -763,6 +772,7 @@ class Box:
 #   3. AKNOWLEDGE  - One short blink
 
 class Alert:
+    @threaded
     def Vibrator(which):
         if (which == "A"):
             Vibrator.A(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -818,6 +828,7 @@ class Alert:
             Vibrator.I(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
             Vibrator.I(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS) 
+    @threaded
     def Row(rowNum):
         if (rowNum == 1):
             Row1.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -837,6 +848,7 @@ class Alert:
             Row3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
             Row3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Column(colNum):
         if (colNum == 1):
             Column1.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -856,6 +868,7 @@ class Alert:
             Column3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
             Column3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Triangle(direction):
         if (direction == "upward"):
             Triangle.upward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -905,6 +918,7 @@ class Alert:
             Triangle.lowerleftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
             Triangle.lowerleftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Box(type):
         if (type == "full"):
             Box.full(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -984,6 +998,7 @@ class Alert:
             Box.diamondhollow(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
             Box.diamondhollow(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Above():
         Row1.blink_rightward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Row1.blink_leftward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -991,6 +1006,7 @@ class Alert:
         Row1.blink_leftward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Row1.blink_rightward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Row1.blink_leftward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Below():
         Row3.blink_rightward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Row3.blink_leftward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -998,6 +1014,7 @@ class Alert:
         Row3.blink_leftward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Row3.blink_rightward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Row3.blink_leftward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Left():
         Column1.blink_downward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Column1.blink_upward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -1005,6 +1022,7 @@ class Alert:
         Column1.blink_upward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Column1.blink_downward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Column1.blink_upward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Right():
         Column3.blink_downward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Column3.blink_upward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -1014,6 +1032,7 @@ class Alert:
         Column3.blink_upward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
 
 class Attention:
+    @threaded
     def Vibrator(which):
         if (which == "A"):
             Vibrator.A(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -1051,6 +1070,7 @@ class Attention:
             Vibrator.I(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
             Vibrator.I(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Row(rowNum):
         if (rowNum == 1):
             Row1.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -1064,6 +1084,7 @@ class Attention:
             Row3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
             Row3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Column(colNum):
         if (colNum == 1):
             Column1.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -1077,6 +1098,7 @@ class Attention:
             Column3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
             Column3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Triangle(direction):
         if (direction == "upward"):
             Triangle.upward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -1110,6 +1132,7 @@ class Attention:
             Triangle.lowerleftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
             Triangle.lowerleftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Box(type):
         if (type == "full"):
             Box.full(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -1163,21 +1186,25 @@ class Attention:
             Box.diamondhollow(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
             sleep(const.SLEEP_TIME)
             Box.diamondhollow(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Above():
         Row1.blink_rightward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Row1.blink_leftward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Row1.blink_rightward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Row1.blink_leftward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Below():
         Row3.blink_rightward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Row3.blink_leftward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Row3.blink_rightward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Row3.blink_leftward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Left():
         Column1.blink_downward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Column1.blink_upward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Column1.blink_downward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Column1.blink_upward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Right():
         Column3.blink_downward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Column3.blink_upward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -1185,6 +1212,7 @@ class Attention:
         Column3.blink_upward(const.BLINK_ON/2, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
 
 class Acknowledge:
+    @threaded
     def Vibrator(which):
         if (which == "A"):
             Vibrator.A(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -1204,6 +1232,7 @@ class Acknowledge:
             Vibrator.H(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (which == "I"):
             Vibrator.I(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Row(rowNum):
         if (rowNum == 1):
             Row1.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -1211,6 +1240,7 @@ class Acknowledge:
             Row2.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (rowNum == 3):
             Row3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Column(colNum):
         if (colNum == 1):
             Column1.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -1218,6 +1248,7 @@ class Acknowledge:
             Column2.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (colNum == 3):
             Column3.blink(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Triangle(direction):
         if (direction == "upward"):
             Triangle.upward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -1235,6 +1266,7 @@ class Acknowledge:
             Triangle.lowerrightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (direction == "lowerleftward"):
             Triangle.lowerleftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Box(type):
         if (type == "full"):
             Box.full(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
@@ -1262,15 +1294,19 @@ class Acknowledge:
             Box.diamond(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         elif (type == "diamondhollow"):
             Box.diamondhollow(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Above():
         Row1.blink_rightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Row1.blink_leftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Below():
         Row3.blink_rightward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Row3.blink_leftward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Left():
         Column1.blink_downward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Column1.blink_upward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
+    @threaded
     def Right():
         Column3.blink_downward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
         Column3.blink_upward(const.BLINK_ON, const.BLINK_OFF, const.BLINK_FADE_IN, const.BLINK_FADE_OUT, const.NUM_BLINKS)
